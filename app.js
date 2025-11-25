@@ -3,7 +3,7 @@ let resetBtn=document.querySelector("#reset-btn");
 let newGamebtn=document.querySelector("#new-btn");
 let msgContainer=document.querySelector(".msg-container");
 let msg=document.querySelector("#msg");
-
+let clk_count = 0;
 
 
 let turn0 = true;
@@ -22,6 +22,7 @@ const winPatterns =[
 
 const resetGame=()=>{
     turn0=true;
+    clk_count = 0;
     enableBoxes();
     msgContainer.classList.add("hide")
 }
@@ -37,6 +38,11 @@ box.addEventListener("click",()=>{
         turn0=true;
     }box.disabled=true;
     checkWinner();
+    clk_count++;
+    if(clk_count === 9) {
+         msg.innerText = "Draw";
+         msgContainer.classList.remove("hide");
+    }
 }
 )
 });
@@ -68,4 +74,5 @@ const checkWinner=() =>{
     }
 }}
   newGamebtn.addEventListener("click",resetGame);
+
   resetBtn.addEventListener("click",resetGame)
